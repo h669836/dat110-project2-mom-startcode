@@ -13,6 +13,7 @@ public class PublishMsg extends Message {
 		this.message = message;
 	}
 
+	//ToString
 	@Override
 	public String toString() {
 		return "PublishMsg[" +
