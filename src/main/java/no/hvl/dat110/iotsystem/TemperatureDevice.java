@@ -20,6 +20,22 @@ public class TemperatureDevice {
 		// - publish the temperature(s)
 		// - disconnect from the broker
 
+		Client sensorClient = new Client("sensor", "localhost", 8080);
+		sensorClient.connect();
+
+		for(int i = 0; i < COUNT; i++){
+			double temperature = sn.read();
+			String message = "Temperature: " + temperature + "°C";
+
+			sensorClient.publish("temperature", message);
+			System.out.println("Published: " + message);
+
+
+
+
+		}
+
+		sensorClient.disconnect();
 		// TODO - end
 
 		System.out.println("Temperature device stopping ... ");

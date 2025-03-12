@@ -23,6 +23,33 @@ public class DisplayDevice {
 		// - receive messages on the topic
 		// - unsubscribe from the topic
 		// - disconnect from the broker
+
+		Client displayClient = new Client("display","localhost",8080);
+		displayClient.connect();
+
+		String topic = "temperature";
+		displayClient.createTopic(topic);
+		displayClient.subscribe(topic);
+
+		for(int i = 0; i < COUNT; i++){
+			Message message = displayClient.receive();
+
+			if (message != null){
+
+				System.out.println("Received message: " + message);
+
+
+
+			}
+
+
+
+		}
+
+		displayClient.unsubscribe(topic);
+		displayClient.disconnect();
+
+
 		
 		// TODO - END
 		
